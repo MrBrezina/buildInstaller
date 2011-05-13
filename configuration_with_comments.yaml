@@ -1,0 +1,72 @@
+# The indentation defines the scope of the structures (btw. YAML is sensitive regarding tabs, see http://www.yaml.org/faq.html)
+# 1. name of the installer (used in dialogs' titles)
+name: The installer
+# 2. text of your licence. Users have to confirm the licence in order to proceed.
+# Note: the line breaks and indentation (not the initial level, though) are kept in the dialog (initial "|" is crucial for this).
+licence: |
+    text of your licence
+    you want to show in the dialog
+    newlines are transfered to the dialog
+        and further levels
+        of indentation as well
+    the space for the text is limited
+    by fixed width of the dialog
+    and height of the screen (no scrollbar available)
+# 3. the files included in the installer are divided into several bundles
+# from which user can choose what to install. Bundles are further divided
+# into "macros", "modules" and "site-packages".
+# "site-packages-paths" and "modules-paths" define which paths should be
+# added to the Python environment.
+bundles:
+    # 4. bundle name (used in the dialog)
+    MyFirstBundle:
+        # 5. macros: following files will be copied to
+        # the target subfolder in FL's Macros folder
+        # Format used is: <current path to file>: <target subfolder of the Macros folder when istalled>
+        # Note: the paths should be relative to this file and should be in the convention of the OS you are using.
+        macros:
+            /current/path/to/file.py: target_subfolder
+            /current/path/to/file.txt: target_subfolder
+            /current/path/to/file.xp3: target_subfolder
+        # 6. modules: following files will be copied to
+        # the target subfolder in FL's Macros/System/Modules/ folder.
+        # Use these for modules you access from the FL macros.
+        # format used is: <current path to file>: <target subfolder of the Macros/System/Modules/ folder when istalled>
+        modules:
+            /current/path/to/file.py: target_subfolder
+            /current/path/to/file.txt: target_subfolder
+            /current/path/to/file.xp3: target_subfolder
+        # 6a. modules-paths: paths to module folders which should be added to
+        # the Python environment in order to make the contained modules work.
+        # These are usually base folders of the modules added above.
+        # Format used is: <path name>: <path to the folder>
+        # Note: <path name> is used for the name of the .pth file when adding to the Python environment
+        modules-paths:
+            targetSubfolder: target_subfolder
+        # 7. site-packages: following files will be copied to the target
+        # subfolder in site-packages folder of Python. Use this for modules
+        # used in your macros and other scripts independent on FontLab.
+        # Format used is: <current path to file>: <target subfolder when istalled>
+        site-packages:
+            /current/path/to/file.py: target_subfolder2/
+            /current/path/to/file.txt: /target_subfolder2/
+            /current/path/to/file.xp3: /target_subfolder2
+        # 7a. site-packages-paths: paths to site-package folders which should be added to
+        # the Python environment in order to make the contained modules work.
+        # These are usually base folders of the site-packages added above.
+        # Format used is: <path name>: <path to the folder>
+        site-packages-paths:
+            targetSubfolder: target_subfolder2
+    MySecondBundle:
+        # Note that there is not any fixed section order or any obligatory arguments.
+        # However, it is devisable to add the modules' base folder to modules-paths/site-packages-paths.
+        modules:
+            /current/path/to/file.py: target_subfolder
+            /current/path/to/file.txt: target_subfolder
+            /current/path/to/file.xp3: target_subfolder
+        macros:
+            /current/path/to/file.py: "." # directly to the FL Macros folder
+            /current/path/to/file.txt: target_subfolder
+            /current/path/to/file.xp3: target_subfolder
+        modules-paths:
+            MyModule: target_subfolder

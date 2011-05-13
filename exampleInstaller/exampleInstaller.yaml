@@ -1,0 +1,23 @@
+name: exampleInstaller
+licence: |
+    Copyright (c) David Brezina, 2008. All rights reserved.
+    Redistribution and use of the script is limited by the BSD licence:
+        http://creativecommons.org/licenses/BSD/
+bundles:
+    # 1. bundle is saved in folder Mark
+    MyFirstBundle:
+        macros:
+            MyFirstBundle/Blue.py: Mark
+            MyFirstBundle/Green.py: Mark
+            MyFirstBundle/Red.py: Mark
+        # the module does to System/Modules/Mark/ subfolder of Macros/ folder
+        modules:
+            MyModules/Mark.py: Mark
+        modules-paths:
+            Mark: Mark
+    # 2. second bundle is saved in folder Dilbert
+    MySecondBundle:
+        macros:
+            MySecondBundle/dilbert.png: Dilbert
+            MySecondBundle/dilbert.py: Dilbert
+            README.txt: Dilbert
